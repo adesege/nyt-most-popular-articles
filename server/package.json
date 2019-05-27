@@ -1,0 +1,48 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start:dev": "nodemon",
+    "build": "rm -rf build && tsc",
+    "start": "node -r @babel/register build/server.js",
+    "test:e2e": "jest --config ./jest.e2e-setup.json --verbose --colors --maxWorkers=1 --detectOpenHandles --forceExit --coverage"
+  },
+  "keywords": [],
+  "author": "Temitayo Fadojutimi <fadojutimitemitayo@gmail.com> (http://twitter.com/adesege_)",
+  "license": "ISC",
+  "dependencies": {
+    "@babel/core": "^7.4.4",
+    "@babel/register": "^7.4.4",
+    "babel-plugin-module-resolver": "^3.2.0",
+    "dotenv": "^8.0.0",
+    "express": "^4.17.0",
+    "jest": "^24.8.0",
+    "joi": "^14.3.1",
+    "redis": "^2.8.0",
+    "reflect-metadata": "^0.1.13",
+    "request": "^2.88.0",
+    "request-promise": "^4.2.4",
+    "routing-controllers": "^0.7.7",
+    "tsconfig-paths": "^3.8.0",
+    "typedi": "^0.8.0",
+    "typescript": "^3.4.5"
+  },
+  "devDependencies": {
+    "prettier": "^1.17.1",
+    "tslint-consistent-codestyle": "^1.15.1",
+    "tslint": "^5.16.0",
+    "@types/dotenv": "^6.1.1",
+    "@types/express": "^4.16.1",
+    "@types/jest": "^24.0.13",
+    "@types/joi": "^14.3.3",
+    "@types/node": "^12.0.2",
+    "@types/redis": "^2.8.12",
+    "@types/request": "^2.48.1",
+    "@types/request-promise": "^4.1.43",
+    "nodemon": "^1.19.0",
+    "ts-jest": "^24.0.2",
+    "ts-node": "^8.1.0"
+  }
+}

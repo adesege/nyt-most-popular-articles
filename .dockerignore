@@ -1,0 +1,5 @@
+./server/build
+./client/.nuxt
+./client/node_modules
+./server/node_modules
+*.env

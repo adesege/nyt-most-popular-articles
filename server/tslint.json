@@ -1,0 +1,43 @@
+{
+  "defaultSeverity": "error",
+  "extends": ["tslint:recommended"],
+  "jsRules": {
+    "no-unused-expression": true
+  },
+  "linterOptions": {
+    "exclude": ["**/*.json"]
+  },
+  "rules": {
+    "quotemark": [true, "single"],
+    "member-access": [false],
+    "ordered-imports": [false],
+    "max-line-length": [true, 150],
+    "member-ordering": [false],
+    "interface-name": [false],
+    "arrow-parens": false,
+    "object-literal-sort-keys": false,
+    // These rules find errors related to TypeScript features.
+    "adjacent-overload-signatures": true,
+    "prefer-for-of": true,
+    "unified-signatures": true,
+    "no-any": true,
+
+    // These rules catch common errors in JS programming or otherwise
+    // confusing constructs that are prone to producing bugs.
+
+    "label-position": true,
+    "no-arg": true,
+    "no-construct": true,
+    "no-duplicate-variable": true,
+
+    "no-invalid-this": true,
+    "no-misused-new": true,
+    "no-shadowed-variable": true,
+    "no-string-throw": true,
+    "no-unused": [true, "ignore-parameters"],
+    "no-unused-expression": true,
+    "no-var-keyword": true,
+    "triple-equals": [true, "allow-null-check", "allow-undefined-check"]
+  },
+  "rulesDirectory": ["tslint-consistent-codestyle"]
+}

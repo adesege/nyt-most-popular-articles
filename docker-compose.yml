@@ -1,0 +1,46 @@
+version: '3'
+
+services:
+  server:
+    container_name: server
+    build:
+      context: ./server
+    ports:
+      - '5300:5300'
+    command: 'yarn start'
+    volumes:
+      - ./server:/app/server
+      - nodemodules:/app/server/node_modules
+    restart: always
+
+  client:
+    container_name: client
+    ports:
+      - '3000:3000'
+    build:
+      context: ./client
+    volumes:
+      - ./client:/app/client
+      - nodemodules2:/app/client/node_modules
+      - nuxt:/app/client/.nuxt
+    depends_on:
+      - server
+      - cache
+    restart: always
+
+  cache:
+    ports:
+      - '6379:6379'
+    image: redis
+    restart: always
+    volumes:
+      - redis_data:/data
+
+volumes:
+  redis_data:
+  nodemodules:
+    external: true
+  nodemodules2:
+    external: true
+  nuxt:
+    external: true
