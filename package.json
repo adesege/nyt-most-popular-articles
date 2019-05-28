@@ -10,6 +10,9 @@
     "start:client": "cd client && yarn start",
     "start:server": "cd server && yarn start",
     "start": "run-p start:*",
+    "start:dev:client": "cd client && yarn dev",
+    "start:dev:server": "cd server && yarn start:dev",
+    "start:dev": "run-p start:dev:*",
     "pre:client": "cd client && yarn install",
     "pre:server": "cd server && yarn install",
     "pre-setup": "run-s pre:client pre:server"

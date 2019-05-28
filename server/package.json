@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start:dev": "nodemon",
-    "build": "rm -rf build && tsc",
+    "build": "rm -rf build && tsc -p tsconfig.build.json",
     "start": "node -r @babel/register build/server.js",
     "test:e2e": "jest --config ./jest.e2e-setup.json --verbose --colors --maxWorkers=1 --detectOpenHandles --forceExit --coverage"
   },
