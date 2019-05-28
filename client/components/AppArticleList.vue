@@ -1,28 +1,33 @@
 <template>
   <div class="app-listing-wrapper">
-    <div
-      v-for="article in articles"
-      :key="article.id"
-      class="app-listing-card"
-      @click="goToArticle(article.articleId)"
-    >
-      <img :src="article.thumbnailUrl" class="app-listing-image" />
-      <div class="app-listing-details">
-        <h1 class="app-listing-news-title">
-          {{ article.title }}
-        </h1>
-        <div class="app-listing-meta">
-          <p v-if="article.byline" class="app-listing-author">
-            {{ article.byline }}
-          </p>
-          <p class="app-listing-calendar">
-            <i class="material-icons"> calendar_today</i
-            >{{ article.publishedDate }}
-          </p>
+    <template v-if="articles.length !== 0">
+      <div
+        v-for="article in articles"
+        :key="article.id"
+        class="app-listing-card"
+        @click="goToArticle(article.articleId)"
+      >
+        <img :src="article.thumbnailUrl" class="app-listing-image" />
+        <div class="app-listing-details">
+          <h1 class="app-listing-news-title">
+            {{ article.title }}
+          </h1>
+          <div class="app-listing-meta">
+            <p v-if="article.byline" class="app-listing-author">
+              {{ article.byline }}
+            </p>
+            <p class="app-listing-calendar">
+              <i class="material-icons"> calendar_today</i
+              >{{ article.publishedDate }}
+            </p>
+          </div>
         </div>
+        <i class="material-icons"> chevron_right </i>
       </div>
-      <i class="material-icons"> chevron_right </i>
-    </div>
+    </template>
+    <template v-else>
+      <p class="no-articles">No articles to show. Please check back</p>
+    </template>
   </div>
 </template>
 
@@ -48,6 +53,10 @@ $line-height: 1.1;
 $lines-to-show: 2;
 
 .app-listing-wrapper {
+  .no-articles {
+    color: red;
+  }
+
   .app-listing-card {
     padding: 15px;
     display: flex;

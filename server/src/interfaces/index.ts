@@ -5,7 +5,17 @@ export interface IGeneric {
 
 export type IGenerics = IGeneric[];
 
-export enum IGetWhere {
-  HMGET = 'hgetall',
-  GET = 'get',
+export interface IArticle {
+  articleId: number;
+  title: string;
+  publishedDate: string;
+  byline: string;
+  thumbnailUrl: string;
+  section: string;
+  keywords: string;
+  abstract: string;
+  source: string;
+  views: number;
 }
+
+export type IArticles = IArticle[];

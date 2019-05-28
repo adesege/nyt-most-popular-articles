@@ -6,11 +6,12 @@ services:
     build:
       context: ./server
     ports:
-      - '5300:5300'
+      - '5000:5000'
     command: 'yarn start'
     volumes:
       - ./server:/app/server
       - nodemodules:/app/server/node_modules
+      - build:/app/server/build
     restart: always
 
   client:
@@ -43,4 +44,6 @@ volumes:
   nodemodules2:
     external: true
   nuxt:
+    external: true
+  build:
     external: true

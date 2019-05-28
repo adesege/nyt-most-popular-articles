@@ -1,4 +1,3 @@
-import pkg from './package';
 require('dotenv').config();
 
 const { API_BASE_URL, PORT = 3000 } = process.env;
@@ -15,14 +14,18 @@ export default {
    ** Headers of the page
    */
   head: {
-    title: pkg.name,
+    title: 'New York Times Most Popular Articles',
     meta: [
       { charset: 'utf-8' },
       {
         name: 'viewport',
         content: 'width=device-width, initial-scale=1, user-scalable=no',
       },
-      { hid: 'description', name: 'description', content: pkg.description },
+      {
+        hid: 'description',
+        name: 'description',
+        content: 'New York Times Most Popular Articles',
+      },
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },

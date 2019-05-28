@@ -6,12 +6,13 @@
   "scripts": {
     "build:client": "cd client && yarn build",
     "build:server": "cd server && yarn build",
-    "build": "yarn pre:client && yarn pre:server && yarn build:client && yarn build:server",
+    "build": "run-p build:*",
     "start:client": "cd client && yarn start",
     "start:server": "cd server && yarn start",
     "start": "run-p start:*",
     "pre:client": "cd client && yarn install",
-    "pre:server": "cd server && yarn install"
+    "pre:server": "cd server && yarn install",
+    "pre-setup": "run-s pre:client pre:server"
   },
   "keywords": [],
   "author": "Temitayo Fadojutimi <fadojutimitemitayo@gmail.com> (http://twitter.com/adesege_)",
