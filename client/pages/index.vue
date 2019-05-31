@@ -17,13 +17,13 @@ export default {
       articles: 'articles/articles',
     }),
   },
-  async mounted() {
-    const articles = this.$store.getters['articles/articles'];
+  async fetch(context) {
+    const articles = context.store.getters['articles/articles'];
     if (Array.isArray(articles) && articles.length !== 0) {
       return;
     }
 
-    await this.$store.dispatch('articles/getArticles');
+    await context.store.dispatch('articles/getArticles');
   },
 };
 </script>

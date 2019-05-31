@@ -2,7 +2,6 @@ import * as request from 'request-promise';
 import {
   Get,
   HttpError,
-  InternalServerError,
   JsonController,
   OnUndefined,
   Params,
@@ -42,45 +41,40 @@ export class ArticlesController {
     if (cache) {
       results = cache;
     } else {
-      try {
-        const response: IGenerics = (await this.httpService.get(
-          this.defaultOptions,
-        )).results.slice(0, 20);
+      const response: IGenerics = (await this.httpService.get(
+        this.defaultOptions,
+      )).results.slice(0, 20);
 
-        if (response.length === 0) {
-          throw new HttpError(204);
-        }
-        results = response.map(result => {
-          // tslint:disable-next-line: no-any
-          const thumbnail: any = transformNYTMediaMetadata(
-            result.media[0]['media-metadata'],
-          );
-
-          return {
-            articleId: result.id,
-            title: result.title,
-            publishedDate: result.published_date,
-            byline: result.byline,
-            thumbnailUrl: thumbnail.url,
-            section: result.section,
-            keywords: result.adx_keywords,
-            abstract: result.abstract,
-            source: result.source,
-            views: result.views,
-          };
-        });
-
-        await this.cacheService.set('allSections', results);
-
-        if (articleId) {
-          (results as unknown) = results.find(
-            result => result.articleId === articleId,
-          );
-        }
-        return results;
-      } catch (error) {
-        throw new InternalServerError(error.message);
+      if (response.length === 0) {
+        throw new HttpError(204);
       }
+      results = response.map(result => {
+        // tslint:disable-next-line: no-any
+        const thumbnail: any = transformNYTMediaMetadata(
+          result.media[0]['media-metadata'],
+        );
+
+        return {
+          articleId: result.id,
+          title: result.title,
+          publishedDate: result.published_date,
+          byline: result.byline,
+          thumbnailUrl: thumbnail.url,
+          section: result.section,
+          keywords: result.adx_keywords,
+          abstract: result.abstract,
+          source: result.source,
+          views: result.views,
+        };
+      });
+
+      await this.cacheService.set('allSections', results);
     }
+    if (articleId) {
+      (results as unknown) = results.find(
+        result => result.articleId === articleId,
+      );
+    }
+    return results;
   }
 }
